@@ -15,7 +15,7 @@ export default function Home() {
         </h2>
         <p className="text-copy-secondary mx-auto max-w-xl text-lg">
           PBKDF2 key derivation, HKDF key expansion, AES-CBC encryption with
-          HMAC validation, JWT session management via NextAuth, with Prisma and
+          HMAC validation, JWT session management via NextAuth, with PostgreSQL and
           Drizzle ORM.
         </p>
       </section>
