@@ -7,7 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --check ."
+    "format": "prettier --check .",
+    "db:up": "docker compose -f ./lib/db/docker-compose.yml up -d",
+    "db:down": "docker compose -f ./lib/db/docker-compose.yml down",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "npx tsx lib/db/seed.ts",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
