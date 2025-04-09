@@ -45,24 +45,28 @@ export class CryptoService {
   }
 
   async deriveKey(
-    password: string,
-    salt: string,
+    password: string | Buffer,
+    salt: string | Buffer,
     iterations: number,
     kdfType: KdfType,
   ): Promise<Buffer> {
+    const passwordBuf =
+      typeof password === "string" ? Buffer.from(password) : password;
+    const saltBuf = typeof salt === "string" ? Buffer.from(salt) : salt;
+
     switch (kdfType) {
       case KdfType.PBKDF2_SHA256:
         return this.hashService.pbkdf2(
-          Buffer.from(password),
-          Buffer.from(salt),
+          passwordBuf,
+          saltBuf,
           iterations,
           "sha256",
         );
 
       case KdfType.PBKDF2_SHA512:
         return this.hashService.pbkdf2(
-          Buffer.from(password),
-          Buffer.from(salt),
+          passwordBuf,
+          saltBuf,
           iterations,
           "sha512",
         );
@@ -136,6 +140,10 @@ export class CryptoService {
 
     const key = await this.hashService.randomBytes(byteLength);
     return new SymmetricCryptoKey(key, encType);
+  }
+
+  async randomBytes(length: number): Promise<Buffer> {
+    return this.hashService.randomBytes(length);
   }
 
   async encrypt(
