@@ -6,7 +6,7 @@ import { SymmetricCryptoKey } from "@/lib/Crypto/models/SymmetricCryptoKey";
 import { EncString } from "@/lib/Crypto/models/EncString";
 import { preloginAction } from "@/app/login/actions";
 import { useRouter } from "next/navigation";
-import { useKeyContext } from "@/lib/KeyProvider";
+import { useKeyContext } from "@/lib/providers/KeyProvider";
 import { getSession, signIn } from "next-auth/react";
 
 export function useLogin() {

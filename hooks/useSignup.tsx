@@ -5,7 +5,7 @@ import { CryptoService } from "@/lib/Crypto/services/CryptoService";
 import { getDefaultKdfConfig } from "@/lib/Crypto/interfaces/KdfConfig";
 import { signupAction } from "../app/signup/actions";
 import { useRouter } from "next/navigation";
-import { useKeyContext } from "@/lib/KeyProvider";
+import { useKeyContext } from "@/lib/providers/KeyProvider";
 import { signIn } from "next-auth/react";
 
 class ValidationFieldError extends Error {
