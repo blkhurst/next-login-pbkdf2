@@ -3,13 +3,10 @@ import Link from "next/link";
 import { Label } from "@/components/ui/Label";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
-import { useState } from "react";
-import { AuthFormState } from "@/lib/auth/definitions";
+import { useSignup } from "../../hooks/useSignup";
 
 export default function SignupPage() {
-  const handleSubmit = async () => {};
-  const [pending, setPending] = useState(false);
-  const [state, setState] = useState<AuthFormState>({});
+  const { state, pending, handleSubmit } = useSignup();
 
   return (
     <main className="max-w-container mt-[20svh] max-w-sm text-center">
