@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth/auth";
 import { getUserById, getNotesForUser } from "@/lib/db/queries";
+import { Notes } from "@/components/Notes/Notes";
 import { ErrorPage } from "@/components/ErrorPage";
 
 export default async function DashboardPage() {
@@ -42,6 +43,17 @@ export default async function DashboardPage() {
       </div>
 
       <hr className="my-6" />
+
+      <Notes
+        email={user.email}
+        kdfConfig={{
+          iterations: user.iterations,
+          kdfType: user.kdfType,
+          encType: user.encType,
+        }}
+        protectedSymmetricKey={user.protectedSymmetricKey}
+        protectedNotes={protectedNotes}
+      />
     </main>
   );
 }
