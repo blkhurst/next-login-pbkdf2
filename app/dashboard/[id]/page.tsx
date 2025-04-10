@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth/auth";
 import { getNoteById } from "@/lib/db/queries";
 import { ErrorPage } from "@/components/ErrorPage";
 import { IoArrowBack } from "react-icons/io5";
+import { NoteViewer } from "@/components/Notes/NoteViewer";
 
 type PageProps = { params: Promise<{ id: string }> };
 
@@ -53,6 +54,8 @@ export default async function Page({ params }: PageProps) {
       </div>
 
       <hr className="my-6" />
+
+      <NoteViewer protectedNote={note} />
     </main>
   );
 }

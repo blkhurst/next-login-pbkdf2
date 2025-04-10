@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { FormEvent } from "react";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
@@ -49,11 +50,13 @@ export function NoteItem({
         />
       ) : (
         <>
-          <span
-            className={`truncate ${isUnlocked ? "" : "text-copy-secondary"}`}
-          >
-            {content}
-          </span>
+          <Link href={`/dashboard/${id}`} className="flex-1 truncate text-left">
+            <span
+              className={`truncate ${isUnlocked ? "" : "text-copy-secondary"}`}
+            >
+              {content}
+            </span>
+          </Link>
 
           {isUnlocked && (
             <div className="flex gap-2">
