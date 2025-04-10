@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth/auth";
 import { db } from "@/lib/db/drizzle";
-import { notes } from "@/lib/db/schema";
+import { users } from "@/lib/db/schema";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -10,6 +10,6 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
   }
 
-  const data = await db.select().from(notes);
+  const data = await db.select().from(users);
   return NextResponse.json(data);
 }
