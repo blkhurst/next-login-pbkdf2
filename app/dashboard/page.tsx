@@ -1,13 +1,13 @@
-import Link from "next/link";
 import { auth } from "@/lib/auth/auth";
 import { getUserById, getNotesForUser } from "@/lib/db/queries";
+import { ErrorPage } from "@/components/ErrorPage";
 
 export default async function DashboardPage() {
   const session = await auth();
-  if (!session?.user.id) return <ErrorMessage message="Not authenticated." />;
+  if (!session?.user.id) return <ErrorPage message="Not authenticated." />;
 
   const user = await getUserById(session.user.id);
-  if (!user) return <ErrorMessage message="User not found." />;
+  if (!user) return <ErrorPage message="User not found." />;
 
   const protectedNotes = await getNotesForUser(user.id);
 
@@ -42,19 +42,6 @@ export default async function DashboardPage() {
       </div>
 
       <hr className="my-6" />
-    </main>
-  );
-}
-
-function ErrorMessage({ message }: { message: string }) {
-  return (
-    <main className="max-w-container flex h-[100svh] items-center justify-center">
-      <div className="bg-surface border-border/50 w-full max-w-sm space-y-4 rounded-md border p-6 text-center drop-shadow-sm">
-        <p className="text-copy-secondary">{message}</p>
-        <Link href="/" className="mt-4 text-sm font-medium hover:underline">
-          Go home
-        </Link>
-      </div>
     </main>
   );
 }
