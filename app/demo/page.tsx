@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
-import { useCryptoDemo } from "./useCryptoDemo";
+import { useCryptoDemo } from "@/hooks/useCryptoDemo";
 import { encOptions } from "@/lib/Crypto/enums/EncType";
 import { kdfOptions } from "@/lib/Crypto/enums/KdfType";
 import { getDefaultKdfConfig } from "@/lib/Crypto/interfaces/KdfConfig";
@@ -21,10 +21,10 @@ export default function Home() {
 
   const {
     masterKey,
-    masterKeyHash,
+    masterPasswordHash,
     masterKeyStretched,
-    aesSymmetricKey,
-    aesSymmetricKeyEncrypted,
+    symmetricKey,
+    protectedSymmetricKey,
     textEncrypted,
     textDecrypted,
     regenerateKeys,
@@ -69,7 +69,7 @@ export default function Home() {
       <div className="mt-8 space-y-2">
         <h2 className="text-xl font-medium tracking-tight">Derived Keys</h2>
         <LabeledValue label="Master Key">{masterKey}</LabeledValue>
-        <LabeledValue label="Master Key Hash">{masterKeyHash}</LabeledValue>
+        <LabeledValue label="Master Password Hash">{masterPasswordHash}</LabeledValue>
         <LabeledValue label="Stretched Master Key">{masterKeyStretched?.keyB64}</LabeledValue>
         <LabeledValue label="AES Key">{masterKeyStretched?.encKeyB64}</LabeledValue>
         <LabeledValue label="MAC Key">{masterKeyStretched?.macKeyB64}</LabeledValue>
@@ -81,10 +81,10 @@ export default function Home() {
           <h2 className="text-xl font-medium tracking-tight">AES Symmetric Key</h2>
           <Button className="max-w-48 cursor-pointer" onClick={regenerateKeys}><IoRefresh /> Regenerate Keys</Button>
         </div>
-        <LabeledValue label="Full Key">{aesSymmetricKey?.keyB64}</LabeledValue>
-        <LabeledValue label="AES Key">{aesSymmetricKey?.encKeyB64}</LabeledValue>
-        <LabeledValue label="MAC Key">{aesSymmetricKey?.macKeyB64}</LabeledValue>
-        <LabeledValue label="Encrypted Full Key"> {aesSymmetricKeyEncrypted}</LabeledValue>
+        <LabeledValue label="Full Key">{symmetricKey?.keyB64}</LabeledValue>
+        <LabeledValue label="AES Key">{symmetricKey?.encKeyB64}</LabeledValue>
+        <LabeledValue label="MAC Key">{symmetricKey?.macKeyB64}</LabeledValue>
+        <LabeledValue label="Encrypted Full Key"> {protectedSymmetricKey}</LabeledValue>
       </div>
 
       {/* Encryption */}

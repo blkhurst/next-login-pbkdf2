@@ -15,11 +15,11 @@ export const useCryptoDemo = (
   textToEncrypt: string,
 ) => {
   const [masterKey, setMasterKey] = useState("");
-  const [masterKeyHash, setMasterKeyHash] = useState("");
+  const [masterPasswordHash, setMasterPasswordHash] = useState("");
   const [masterKeyStretched, setMasterKeyStretched] =
     useState<SymmetricCryptoKey>();
-  const [aesSymmetricKey, setAesSymmetricKey] = useState<SymmetricCryptoKey>();
-  const [aesSymmetricKeyEncrypted, setAesSymmetricKeyEncrypted] = useState("");
+  const [symmetricKey, setSymmetricKey] = useState<SymmetricCryptoKey>();
+  const [protectedSymmetricKey, setProtectedSymmetricKey] = useState("");
   const [textEncrypted, setTextEncrypted] = useState("");
   const [textDecrypted, setTextDecrypted] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -33,29 +33,29 @@ export const useCryptoDemo = (
     clearError();
     const service = CryptoService.create();
 
-    const derived = await service.deriveKey(
+    const masterKey = await service.deriveKey(
       password,
       salt,
       kdfIterations,
       kdfType,
     );
 
-    const derivedHash = await service.derivedKeyHash(
+    const masterPasswordHash = await service.derivedKeyHash(
       password,
       salt,
       kdfIterations,
       kdfType,
     );
 
-    const stretchedKey = await service.deriveKeyUsingConfig(password, salt, {
+    const masterKeyStretched = await service.deriveKeyUsingConfig(password, salt, {
       encType,
       iterations: kdfIterations,
       kdfType,
     });
 
-    setMasterKey(derived.toString("base64"));
-    setMasterKeyHash(derivedHash.toString("base64"));
-    setMasterKeyStretched(stretchedKey);
+    setMasterKey(masterKey.toString("base64"));
+    setMasterPasswordHash(masterPasswordHash.toString("base64"));
+    setMasterKeyStretched(masterKeyStretched);
     setIsValid(true);
     console.log("updateKeys");
   }, [password, salt, kdfIterations, encType, kdfType, clearError]);
@@ -66,47 +66,47 @@ export const useCryptoDemo = (
 
     const service = CryptoService.create();
     const key = await service.createKey(encType);
-    setAesSymmetricKey(key);
+    setSymmetricKey(key);
     console.log("generateSymmetricKey");
   }, [encType, isValid, clearError]);
 
   const encryptSymmetricKey = useCallback(async () => {
-    if (!aesSymmetricKey || !masterKeyStretched || !isValid) return;
+    if (!symmetricKey || !masterKeyStretched || !isValid) return;
     clearError();
 
     const service = CryptoService.create();
     const encryptedKey = await service.encrypt(
-      aesSymmetricKey.key,
+      symmetricKey.key,
       masterKeyStretched,
     );
-    setAesSymmetricKeyEncrypted(encryptedKey.encryptedString);
+    setProtectedSymmetricKey(encryptedKey.encryptedString);
     console.log("encryptSymmetricKey");
-  }, [aesSymmetricKey, masterKeyStretched, isValid, clearError]);
+  }, [symmetricKey, masterKeyStretched, isValid, clearError]);
 
   const encryptText = useCallback(async () => {
-    if (!aesSymmetricKey || !isValid) return;
+    if (!symmetricKey || !isValid) return;
     clearError();
 
     const service = CryptoService.create();
-    const encrypted = await service.encrypt(textToEncrypt, aesSymmetricKey);
+    const encrypted = await service.encrypt(textToEncrypt, symmetricKey);
     const decrypted = await service.decrypt(
       new EncString(encrypted.encryptedString),
-      aesSymmetricKey,
+      symmetricKey,
     );
 
     setTextEncrypted(encrypted.encryptedString);
     setTextDecrypted(decrypted.toString());
     console.log("updateEncryption");
-  }, [textToEncrypt, aesSymmetricKey, isValid, clearError]);
+  }, [textToEncrypt, symmetricKey, isValid, clearError]);
 
   const handleError = (err: unknown) => {
     const message =
       err instanceof Error ? err.message : "Unexpected error occurred.";
     setMasterKey("");
-    setMasterKeyHash("");
+    setMasterPasswordHash("");
     setMasterKeyStretched(undefined);
-    setAesSymmetricKey(undefined);
-    setAesSymmetricKeyEncrypted("");
+    setSymmetricKey(undefined);
+    setProtectedSymmetricKey("");
     setTextEncrypted("");
     setTextDecrypted("");
     setIsValid(false);
@@ -131,10 +131,10 @@ export const useCryptoDemo = (
 
   return {
     masterKey,
-    masterKeyHash,
+    masterPasswordHash,
     masterKeyStretched,
-    aesSymmetricKey,
-    aesSymmetricKeyEncrypted,
+    symmetricKey,
+    protectedSymmetricKey,
     textEncrypted,
     textDecrypted,
     regenerateKeys: generateSymmetricKey,
