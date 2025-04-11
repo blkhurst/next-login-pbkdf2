@@ -1,6 +1,6 @@
 import NextAuth, { AuthError, DefaultSession } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { CryptoService } from "@/lib/Crypto/services/CryptoService";
+import { CryptoService } from "@/lib/cryptography/services/CryptoService";
 import { LoginFormSchema } from "@/lib/auth/definitions";
 import { getUserByEmail } from "@/lib/db/queries";
 import { timingSafeEqual } from "crypto";

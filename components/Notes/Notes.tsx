@@ -3,7 +3,7 @@ import { useNotes } from "@/hooks/useNotes";
 import { NoteForm } from "./NoteForm";
 import { NoteItem } from "./NoteItem";
 import { Note } from "@/lib/db/schema";
-import { KdfConfig } from "@/lib/Crypto/interfaces/KdfConfig";
+import { KdfConfig } from "@/lib/cryptography/interfaces/KdfConfig";
 import { Label } from "../ui/Label";
 import { useState } from "react";
 

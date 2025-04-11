@@ -1,7 +1,7 @@
 "use server";
 import { AuthFormState, SignupFormSchema } from "@/lib/auth/definitions";
-import { CryptoService } from "@/lib/Crypto/services/CryptoService";
-import { getDefaultKdfConfig } from "@/lib/Crypto/interfaces/KdfConfig";
+import { CryptoService } from "@/lib/cryptography/services/CryptoService";
+import { getDefaultKdfConfig } from "@/lib/cryptography/interfaces/KdfConfig";
 import { getUserByEmail } from "@/lib/db/queries";
 import { db } from "@/lib/db/drizzle";
 import { users } from "@/lib/db/schema";

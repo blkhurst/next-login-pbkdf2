@@ -6,10 +6,10 @@ import {
 } from "@/app/dashboard/actions";
 import { useCallback, useEffect, useState } from "react";
 import { useKeyContext } from "@/lib/providers/KeyProvider";
-import { SymmetricCryptoKey } from "@/lib/Crypto/models/SymmetricCryptoKey";
-import { CryptoService } from "@/lib/Crypto/services/CryptoService";
-import { EncString } from "@/lib/Crypto/models/EncString";
-import { KdfConfig } from "@/lib/Crypto/interfaces/KdfConfig";
+import { SymmetricCryptoKey } from "@/lib/cryptography/models/SymmetricCryptoKey";
+import { CryptoService } from "@/lib/cryptography/services/CryptoService";
+import { EncString } from "@/lib/cryptography/models/EncString";
+import { KdfConfig } from "@/lib/cryptography/interfaces/KdfConfig";
 import { Note } from "@/lib/db/schema";
 
 export function useNotes(

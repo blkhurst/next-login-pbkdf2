@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useState, useContext } from "react";
-import { SymmetricCryptoKey } from "../Crypto/models/SymmetricCryptoKey";
+import { SymmetricCryptoKey } from "@/lib/cryptography/models/SymmetricCryptoKey";
 
 type KeyContextType = {
   symmetricKey: SymmetricCryptoKey | null;

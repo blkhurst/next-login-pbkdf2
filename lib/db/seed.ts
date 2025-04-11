@@ -1,9 +1,9 @@
 import { db } from "./drizzle";
 import { users } from "./schema";
 import { createNote, getNotesForUser, getUserByEmail } from "./queries";
-import { CryptoService } from "../Crypto/services/CryptoService";
-import { SymmetricCryptoKey } from "../Crypto/models/SymmetricCryptoKey";
-import { getDefaultKdfConfig } from "../Crypto/interfaces/KdfConfig";
+import { CryptoService } from "@/lib/cryptography/services/CryptoService";
+import { SymmetricCryptoKey } from "@/lib/cryptography/models/SymmetricCryptoKey";
+import { getDefaultKdfConfig } from "@/lib/cryptography/interfaces/KdfConfig";
 
 const service = CryptoService.create();
 const kdfConfig = getDefaultKdfConfig();

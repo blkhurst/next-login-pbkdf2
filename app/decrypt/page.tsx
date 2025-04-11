@@ -2,12 +2,12 @@
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
-import { CryptoService } from "@/lib/Crypto/services/CryptoService";
-import { SymmetricCryptoKey } from "@/lib/Crypto/models/SymmetricCryptoKey";
-import { EncString } from "@/lib/Crypto/models/EncString";
-import { getDefaultKdfConfig } from "@/lib/Crypto/interfaces/KdfConfig";
-import { encOptions } from "@/lib/Crypto/enums/EncType";
-import { kdfOptions } from "@/lib/Crypto/enums/KdfType";
+import { CryptoService } from "@/lib/cryptography/services/CryptoService";
+import { SymmetricCryptoKey } from "@/lib/cryptography/models/SymmetricCryptoKey";
+import { EncString } from "@/lib/cryptography/models/EncString";
+import { getDefaultKdfConfig } from "@/lib/cryptography/interfaces/KdfConfig";
+import { encOptions } from "@/lib/cryptography/enums/EncType";
+import { kdfOptions } from "@/lib/cryptography/enums/KdfType";
 
 export default function DecryptPage() {
   const kdfDefaults = getDefaultKdfConfig();

@@ -5,9 +5,9 @@ import { Label } from "@/components/ui/Label";
 import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
 import { useCryptoDemo } from "@/hooks/useCryptoDemo";
-import { encOptions } from "@/lib/Crypto/enums/EncType";
-import { kdfOptions } from "@/lib/Crypto/enums/KdfType";
-import { getDefaultKdfConfig } from "@/lib/Crypto/interfaces/KdfConfig";
+import { encOptions } from "@/lib/cryptography/enums/EncType";
+import { kdfOptions } from "@/lib/cryptography/enums/KdfType";
+import { getDefaultKdfConfig } from "@/lib/cryptography/interfaces/KdfConfig";
 import { IoRefresh } from "react-icons/io5"; // Causes +500kB in development build
 
 export default function Home() {

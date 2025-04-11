@@ -1,8 +1,8 @@
 "use client";
 import { FormEvent, useState } from "react";
 import { AuthFormState, SignupFormSchema } from "@/lib/auth/definitions";
-import { CryptoService } from "@/lib/Crypto/services/CryptoService";
-import { getDefaultKdfConfig } from "@/lib/Crypto/interfaces/KdfConfig";
+import { CryptoService } from "@/lib/cryptography/services/CryptoService";
+import { getDefaultKdfConfig } from "@/lib/cryptography/interfaces/KdfConfig";
 import { signupAction } from "../app/signup/actions";
 import { useRouter } from "next/navigation";
 import { useKeyContext } from "@/lib/providers/KeyProvider";

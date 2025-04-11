@@ -1,9 +1,9 @@
 "use client";
 import { FormEvent, useRef, useState } from "react";
 import { AuthFormState, LoginFormSchema } from "@/lib/auth/definitions";
-import { CryptoService } from "@/lib/Crypto/services/CryptoService";
-import { SymmetricCryptoKey } from "@/lib/Crypto/models/SymmetricCryptoKey";
-import { EncString } from "@/lib/Crypto/models/EncString";
+import { CryptoService } from "@/lib/cryptography/services/CryptoService";
+import { SymmetricCryptoKey } from "@/lib/cryptography/models/SymmetricCryptoKey";
+import { EncString } from "@/lib/cryptography/models/EncString";
 import { preloginAction } from "@/app/login/actions";
 import { useRouter } from "next/navigation";
 import { useKeyContext } from "@/lib/providers/KeyProvider";
