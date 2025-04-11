@@ -10,12 +10,12 @@ const kdfConfig = getDefaultKdfConfig();
 
 async function addAccount(email: string, password: string) {
   const salt = await service.randomBytes(16);
-  const masterKeyStretched = await service.deriveKeyUsingConfig(
+  const masterKeyStretched = await service.deriveStretchedMasterKey(
     password,
     email,
     kdfConfig,
   );
-  const masterPasswordHash = await service.derivedKeyHash(
+  const masterPasswordHash = await service.deriveMasterPasswordHash(
     password,
     email,
     kdfConfig.iterations,

@@ -31,7 +31,7 @@ export default function DecryptPage() {
       try {
         const service = CryptoService.create();
 
-        const stretchedKey = await service.deriveKeyUsingConfig(password, salt, {
+        const stretchedKey = await service.deriveStretchedMasterKey(password, salt, {
           encType,
           iterations: kdfIterations,
           kdfType,

@@ -34,7 +34,7 @@ export class CryptoService {
     return new CryptoService(encryptionService, hashService);
   }
 
-  async deriveKeyUsingConfig(
+  async deriveStretchedMasterKey(
     password: string,
     salt: string,
     { encType, iterations, kdfType }: KdfConfig,
@@ -76,7 +76,7 @@ export class CryptoService {
     }
   }
 
-  async derivedKeyHash(
+  async deriveMasterPasswordHash(
     password: string,
     salt: string,
     iterations: number,
@@ -93,7 +93,7 @@ export class CryptoService {
         return this.hashService.pbkdf2(key, Buffer.from(password), 1, "sha512");
 
       default:
-        throw new Error(`[deriveKey] Unsupported kdfType: ${kdfType}`);
+        throw new Error(`[MasterPasswordHash] Unsupported kdfType: ${kdfType}`);
     }
   }
 

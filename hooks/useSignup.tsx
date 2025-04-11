@@ -76,12 +76,12 @@ export function useSignup() {
 
     // Derive Keys
     const service = CryptoService.create();
-    const masterKeyStretched = await service.deriveKeyUsingConfig(
+    const masterKeyStretched = await service.deriveStretchedMasterKey(
       password,
       email,
       kdfConfig,
     );
-    const masterPasswordHash = await service.derivedKeyHash(
+    const masterPasswordHash = await service.deriveMasterPasswordHash(
       password,
       email,
       kdfConfig.iterations,

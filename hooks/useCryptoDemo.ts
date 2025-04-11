@@ -40,18 +40,22 @@ export const useCryptoDemo = (
       kdfType,
     );
 
-    const masterPasswordHash = await service.derivedKeyHash(
+    const masterPasswordHash = await service.deriveMasterPasswordHash(
       password,
       salt,
       kdfIterations,
       kdfType,
     );
 
-    const masterKeyStretched = await service.deriveKeyUsingConfig(password, salt, {
-      encType,
-      iterations: kdfIterations,
-      kdfType,
-    });
+    const masterKeyStretched = await service.deriveStretchedMasterKey(
+      password,
+      salt,
+      {
+        encType,
+        iterations: kdfIterations,
+        kdfType,
+      },
+    );
 
     setMasterKey(masterKey.toString("base64"));
     setMasterPasswordHash(masterPasswordHash.toString("base64"));

@@ -58,7 +58,7 @@ export function useNotes(
   const unlockNotes = useCallback(
     async (password: string) => {
       try {
-        const masterKeyStretched = await service.deriveKeyUsingConfig(
+        const masterKeyStretched = await service.deriveStretchedMasterKey(
           password,
           email,
           kdfConfig,
